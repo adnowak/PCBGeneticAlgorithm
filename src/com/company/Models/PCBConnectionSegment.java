@@ -2,24 +2,30 @@ package com.company.Models;
 
 public class PCBConnectionSegment {
     private boolean horizontal;
-    private int length;
-    private PCBPoint startingPoint;
+    private int directionalLength;
+    private int startingPosX;
+    private int startingPosY;
 
-    public PCBConnectionSegment(boolean horizontal, int length, PCBPoint startingPoint) {
+    public PCBConnectionSegment(boolean horizontal, int directionalLength, int startingPosX, int startingPosY) {
         this.horizontal = horizontal;
-        this.length = length;
-        this.startingPoint = startingPoint;
+        this.directionalLength = directionalLength;
+        this.startingPosX = startingPosX;
+        this.startingPosY = startingPosY;
     }
 
     public boolean isHorizontal() {
         return horizontal;
     }
 
-    public int getLength() {
-        return length;
+    public int getDirectionalLength() {
+        return directionalLength;
     }
 
-    public PCBPoint getStartingPoint() {
-        return startingPoint;
+    public int getStartingPosX() {
+        return startingPosX;
+    }
+
+    public int getStartingPosY() {
+        return startingPosY;
     }
 }

@@ -10,6 +10,7 @@ public class PCBConnection {
     public PCBConnection(PCBPoint startPoint, PCBPoint endpoint1) {
         this.endpoint0 = startPoint;
         this.endpoint1 = endpoint1;
+        this.path = new ArrayList<>();
     }
 
     public PCBPoint getEndpoint0() {
