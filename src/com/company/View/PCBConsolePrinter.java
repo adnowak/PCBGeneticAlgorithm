@@ -94,16 +94,15 @@ public class PCBConsolePrinter {
         for (PCBConnection connection : pcb.getConnections()) {
             PCB = addConnectionPaths(addConnectionEndpoints(PCB, connection, connectionNumber), connection, connectionNumber);
             connectionNumber++;
-
-
-            if(connectionNumber > 66){
-//                break;
-            }
         }
         return PCB;
     }
 
+    public String getPCBConsoleRepresentation(){
+        return addConnections(prepareEmptyPCB());
+    }
+
     public void print(){
-        System.out.println(addConnections(prepareEmptyPCB()));
+        System.out.println(getPCBConsoleRepresentation());
     }
 }
