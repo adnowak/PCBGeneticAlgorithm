@@ -13,6 +13,15 @@ public class PCB {
         this.connections = connections;
     }
 
+    public PCB(PCB pcb){
+        width = pcb.getWidth();
+        height = pcb.getHeight();
+        connections = new ArrayList<>();
+        for(PCBConnection connection : pcb.getConnections()){
+            connections.add(new PCBConnection(connection));
+        }
+    }
+
     public int getWidth() {
         return width;
     }

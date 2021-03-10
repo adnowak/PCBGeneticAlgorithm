@@ -13,6 +13,13 @@ public class PCBConnectionSegment {
         this.startingPosY = startingPosY;
     }
 
+    public PCBConnectionSegment(PCBConnectionSegment pcb){
+        horizontal = pcb.isHorizontal();
+        directionalLength = pcb.getDirectionalLength();
+        startingPosX = pcb.getStartingPosX();
+        startingPosY = pcb.getStartingPosY();
+    }
+
     public boolean isHorizontal() {
         return horizontal;
     }

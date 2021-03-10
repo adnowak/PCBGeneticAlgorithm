@@ -13,6 +13,15 @@ public class PCBConnection {
         this.path = new ArrayList<>();
     }
 
+    public PCBConnection(PCBConnection connection){
+        endpoint0 = new PCBPoint(connection.getEndpoint0());
+        endpoint1 = new PCBPoint(connection.getEndpoint1());
+        path = new ArrayList<>();
+        for(PCBConnectionSegment segment : connection.getPath()){
+            path.add(new PCBConnectionSegment(segment));
+        }
+    }
+
     public PCBPoint getEndpoint0() {
         return endpoint0;
     }
