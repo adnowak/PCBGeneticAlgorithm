@@ -20,6 +20,6 @@ public class PCBFitness extends Fitness<PCB>{
             }
         }
 
-        return 10000 - collisionsAmount*50 - totalLength;
+        return 10000 - collisionsAmount*10 - totalLength;
     }
 }

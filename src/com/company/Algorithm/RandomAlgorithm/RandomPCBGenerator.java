@@ -3,6 +3,7 @@ package com.company.Algorithm.RandomAlgorithm;
 import com.company.Models.PCB;
 import com.company.Models.PCBConnection;
 import com.company.Models.PCBConnectionSegment;
+import com.company.Utils;
 
 import java.util.ArrayList;
 
@@ -18,8 +19,8 @@ public class RandomPCBGenerator {
             int recentPosX = connection.getEndpoint0().getPosX();
             int recentPosY = connection.getEndpoint0().getPosY();
 
-            int midX = (getRandomNumber(0, pcb.getWidth())*3 +connection.getEndpoint1().getPosX() + recentPosX)/5;
-            int midY = (getRandomNumber(0, pcb.getHeight())*3 +connection.getEndpoint1().getPosY() + recentPosY)/5;
+            int midX = (Utils.getRandomNumber(0, pcb.getWidth())*3 +connection.getEndpoint1().getPosX() + recentPosX)/5;
+            int midY = (Utils.getRandomNumber(0, pcb.getHeight())*3 +connection.getEndpoint1().getPosY() + recentPosY)/5;
 
             connectTwoPoints(connection, recentPosX, recentPosY, midX, midY);
             connectTwoPoints(connection, midX, midY, connection.getEndpoint1().getPosX(), connection.getEndpoint1().getPosY());
@@ -36,8 +37,8 @@ public class RandomPCBGenerator {
                 int recentPosX = connection.getEndpoint0().getPosX();
                 int recentPosY = connection.getEndpoint0().getPosY();
 
-                int midX = (getRandomNumber(0, recentPCB.getWidth())*8 +connection.getEndpoint1().getPosX() + recentPosX)/10;
-                int midY = (getRandomNumber(0, recentPCB.getHeight())*8 +connection.getEndpoint1().getPosY() + recentPosY)/10;
+                int midX = (Utils.getRandomNumber(0, recentPCB.getWidth())*8 +connection.getEndpoint1().getPosX() + recentPosX)/10;
+                int midY = (Utils.getRandomNumber(0, recentPCB.getHeight())*8 +connection.getEndpoint1().getPosY() + recentPosY)/10;
 
                 connectTwoPoints(connection, recentPosX, recentPosY, midX, midY);
                 connectTwoPoints(connection, midX, midY, connection.getEndpoint1().getPosX(), connection.getEndpoint1().getPosY());
@@ -69,13 +70,13 @@ public class RandomPCBGenerator {
                 }
 
                 if(xDistanceLeft>0){
-                    segmentLength = getRandomNumber(1, Math.abs(xDistanceLeft)+1);
+                    segmentLength = Utils.getRandomNumber(1, Math.abs(xDistanceLeft)+1);
                     connection.getPath().add(new PCBConnectionSegment(true, segmentLength, recentPosX, recentPosY));
                     xDistanceLeft -= segmentLength;
                     recentPosX += segmentLength;
                 }
                 else if (xDistanceLeft<0){
-                    segmentLength = getRandomNumber(1, Math.abs(xDistanceLeft)+1);
+                    segmentLength = Utils.getRandomNumber(1, Math.abs(xDistanceLeft)+1);
                     connection.getPath().add(new PCBConnectionSegment(true, -segmentLength, recentPosX, recentPosY));
                     xDistanceLeft += segmentLength;
                     recentPosX -= segmentLength;
@@ -95,13 +96,13 @@ public class RandomPCBGenerator {
                 }
 
                 if(yDistanceLeft>0){
-                    segmentLength = getRandomNumber(1, Math.abs(yDistanceLeft)+1);
+                    segmentLength = Utils.getRandomNumber(1, Math.abs(yDistanceLeft)+1);
                     connection.getPath().add(new PCBConnectionSegment(false, segmentLength, recentPosX, recentPosY));
                     yDistanceLeft -= segmentLength;
                     recentPosY += segmentLength;
                 }
                 else if(yDistanceLeft<0){
-                    segmentLength = getRandomNumber(1, Math.abs(yDistanceLeft)+1);
+                    segmentLength = Utils.getRandomNumber(1, Math.abs(yDistanceLeft)+1);
                     connection.getPath().add(new PCBConnectionSegment(false, -segmentLength, recentPosX, recentPosY));
                     yDistanceLeft += segmentLength;
                     recentPosY -= segmentLength;
@@ -109,9 +110,5 @@ public class RandomPCBGenerator {
                 horizontal = true;
             }
         }
-    }
-
-    private int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
     }
 }
