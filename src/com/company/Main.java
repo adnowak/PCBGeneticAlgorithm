@@ -1,8 +1,6 @@
 package com.company;
 
-import com.company.Algorithm.GeneticAlgorithm.PCBCrossing;
-import com.company.Algorithm.GeneticAlgorithm.PCBFitness;
-import com.company.Algorithm.GeneticAlgorithm.PCBSelection;
+import com.company.Algorithm.GeneticAlgorithm.*;
 import com.company.Algorithm.RandomAlgorithm.RandomPCBGenerator;
 import com.company.Data.PCBDeserializerFile;
 import com.company.Models.PCB;
@@ -13,7 +11,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        PCB pcb = new PCBDeserializerFile().deserializeFromFile("resources/zad1.txt");
+        PCB pcb = new PCBDeserializerFile().deserializeFromFile("resources/zad0.txt");
         System.out.println("Empty PCB: ");
         new PCBConsolePrinter(pcb).print();
 
@@ -52,7 +50,7 @@ public class Main {
         System.out.println("Fitness: " + new PCBFitness(pcbsPair.get(1)).getIndividualFitnessValue());
 
         PCBCrossing crossing = new PCBCrossing(pcbsPair.get(0), pcbsPair.get(1));
-        crossing.crossover();
+        pcbsPair = crossing.crossover();
 
         System.out.println("After crossing");
 
@@ -60,6 +58,20 @@ public class Main {
         System.out.println("Fitness: " + new PCBFitness(pcbsPair.get(0)).getIndividualFitnessValue());
 
         new PCBConsolePrinter(pcbsPair.get(1)).print();
+        System.out.println(pcbsPair.get(1).getConnections().get(0).getPath().size());
         System.out.println("Fitness: " + new PCBFitness(pcbsPair.get(1)).getIndividualFitnessValue());
+
+        PCB mutatedPCB = new PCBMutation(pcbsPair.get(1)).mutate();
+
+        System.out.println("After mutation");
+
+        new PCBConsolePrinter(mutatedPCB).print();
+        System.out.println(mutatedPCB.getConnections().get(0).getPath().size());
+        System.out.println("Fitness: " + new PCBFitness(mutatedPCB).getIndividualFitnessValue());
+
+        System.out.println("After genetic algorithm:");
+        pcb = new PCBGeneticAlgorithm(pcbs, 100).generateBestWithRoulette();
+        new PCBConsolePrinter(pcb).print();
+        System.out.println("Fitness: " + new PCBFitness(pcb).getIndividualFitnessValue());
     }
 }

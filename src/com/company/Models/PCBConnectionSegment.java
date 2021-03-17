@@ -35,4 +35,28 @@ public class PCBConnectionSegment {
     public int getStartingPosY() {
         return startingPosY;
     }
+
+    public void setDirectionalLength(int directionalLength) {
+        this.directionalLength = directionalLength;
+    }
+
+    public void setStartingPosX(int startingPosX) {
+        this.startingPosX = startingPosX;
+    }
+
+    public void setStartingPosY(int startingPosY) {
+        this.startingPosY = startingPosY;
+    }
+
+    public void changeDirectionalLength(int change) {
+        this.directionalLength += change;
+    }
+
+    public void changeStartingPosX(int change) {
+        this.startingPosX += change;
+    }
+
+    public void changeStartingPosY(int change) {
+        this.startingPosY += change;
+    }
 }

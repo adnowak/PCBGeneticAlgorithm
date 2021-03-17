@@ -5,14 +5,16 @@ import com.company.Models.PCBConnection;
 import com.company.Models.PCBConnectionSegment;
 import com.company.View.PCBConsolePrinter;
 
-public class PCBFitness extends Fitness<PCB>{
+public class PCBFitness{
+    private PCB individual;
+
     public PCBFitness(PCB individual) {
-        super(individual);
+        this.individual = individual;
     }
 
-    @Override
     public int getIndividualFitnessValue() {
         int collisionsAmount = (int) new PCBConsolePrinter(individual).getPCBConsoleRepresentation().chars().filter(ch -> ch == '&').count();
+
         int totalLength = 0;
         for (PCBConnection connection : individual.getConnections()) {
             for (PCBConnectionSegment segment : connection.getPath()) {
@@ -20,6 +22,6 @@ public class PCBFitness extends Fitness<PCB>{
             }
         }
 
-        return 10000 - collisionsAmount*10 - totalLength;
+        return 10000 - collisionsAmount*100 - totalLength;
     }
 }

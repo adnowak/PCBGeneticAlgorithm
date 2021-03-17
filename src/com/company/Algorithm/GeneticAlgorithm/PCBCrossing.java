@@ -4,16 +4,18 @@ import com.company.Models.PCB;
 import com.company.Models.PCBConnection;
 import com.company.Utils;
 
+import java.util.ArrayList;
+
 public class PCBCrossing {
     private PCB firstIndividual;
     private PCB secondIndividual;
 
     public PCBCrossing(PCB firstIndividual, PCB secondIndividual) {
-        this.firstIndividual = firstIndividual;
-        this.secondIndividual = secondIndividual;
+        this.firstIndividual = new PCB(firstIndividual);
+        this.secondIndividual = new PCB(secondIndividual);
     }
 
-    public void crossover(){
+    public ArrayList<PCB> crossover(){
         if(Math.random() < Utils.CROSS_PROB){
             int connectionsAmount = firstIndividual.getConnections().size();
             int splitIndex = Utils.getRandomNumber(1, connectionsAmount);
@@ -22,6 +24,10 @@ public class PCBCrossing {
                 swapChromosome(i);
             }
         }
+        ArrayList<PCB> result = new ArrayList<>();
+        result.add(firstIndividual);
+        result.add(secondIndividual);
+        return result;
     }
 
     private void swapChromosome(int index){
